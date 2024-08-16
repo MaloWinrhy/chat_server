@@ -10,5 +10,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     //create channel
     let (tx, _rx) = broadcast::channel::<String>(10);
+
+    loop{
+        let (mut socket, _) = listener.accept().await?;
+        //println!("test loop")
+
+        let tx = tx.clone();
+
+        let mut rx = tx.subscribe();
+    }
 	Ok(())
 }
